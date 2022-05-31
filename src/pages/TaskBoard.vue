@@ -388,6 +388,8 @@
 
 <script>
 import Vue from "vue";
+import VueCookies from 'vue-cookies'
+
 import draggable from "vuedraggable";
 import {ref} from 'vue'
 

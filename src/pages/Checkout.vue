@@ -19,12 +19,12 @@
             <div class="row">
               <div class="col-6">
                 <q-item>
-                  <q-input dense outlined class="full-width" v-model="address_detail.first_name" label="First Name *"/>
+                  <q-input dense outlined class="full-width" v-model="address_detail.first_name" label="First Name *"></q-input>
                 </q-item>
               </div>
               <div class="col-6">
                 <q-item>
-                  <q-input dense outlined class="full-width" v-model="address_detail.last_name" label="Last Name *"/>
+                  <q-input dense outlined class="full-width" v-model="address_detail.last_name" label="Last Name *"></q-input>
                 </q-item>
               </div>
               <div class="col-12">
@@ -130,24 +130,24 @@
                 <q-item-label header class="text-h6">Order summary</q-item-label>
                 <q-item class="full-width">
                   <q-item-section>
-                    <q-item-label lines="1">Product 1</q-item-label>
-                    <q-item-label caption>Caption</q-item-label>
+                    <q-item-label lines="1">Mini</q-item-label>
+                    <q-item-label caption>M1</q-item-label>
                   </q-item-section>
                   <q-item-section side>
-                    $10.99
+                    $599
                   </q-item-section>
                 </q-item>
                 <q-separator></q-separator>
                 <q-item class="full-width">
                   <q-item-section>
-                    <q-item-label lines="1">Product 2</q-item-label>
-                    <q-item-label caption>Caption Product 2</q-item-label>
+                    <q-item-label lines="1">Platform Series</q-item-label>
+                    <q-item-label caption>AN810-XNX</q-item-label>
                   </q-item-section>
                   <q-item-section side>
-                    $19.99
+                    $599
                   </q-item-section>
                 </q-item>
-                <q-separator></q-separator>
+                <!-- <q-separator></q-separator>
                 <q-item class="full-width">
                   <q-item-section>
                     <q-item-label lines="1">Product 3</q-item-label>
@@ -177,13 +177,13 @@
                     Free
                   </q-item-section>
                 </q-item>
-                <q-separator></q-separator>
+                <q-separator></q-separator> -->
                 <q-item class="full-width" style="border-top: 3px dotted blue">
                   <q-item-section>
                     <q-item-label lines="1">Total</q-item-label>
                   </q-item-section>
                   <q-item-section side>
-                    $288.96
+                    $1,198.00
                   </q-item-section>
                 </q-item>
               </div>
@@ -225,16 +225,18 @@
             <q-icon name="shopping_cart" class="q-mr-sm"/>
             Order Summary
           </q-card-section>
+          <q-separator/>
           <q-card-section horizontal>
             <q-card-section class="col-5 flex flex-center">
               <q-img height="80px"
                      class="rounded-borders"
-                     src="https://cdn.quasar.dev/img/parallax2.jpg"
+                     fit="scale-down"
+                     :src="require('../assets/products/s1.png')"
               />
             </q-card-section>
             <q-card-section class="">
-              <div class="text-subtitle2 q-mt-sm">Product 1</div>
-              <div class="text-subtitle2  q-mb-xs">$10.99</div>
+              <div class="text-subtitle2 q-mt-sm">Mini M1</div>
+              <div class="text-subtitle2  q-mb-xs">$599</div>
             </q-card-section>
           </q-card-section>
           <q-separator/>
@@ -242,16 +244,18 @@
             <q-card-section class="col-5 flex flex-center">
               <q-img height="80px"
                      class="rounded-borders"
-                     src="https://cdn.quasar.dev/img/parallax2.jpg"
+                     fit="scale-down"
+                     :src="require('../assets/products/AN810XNX.png')"
               />
             </q-card-section>
             <q-card-section class="">
-              <div class="text-subtitle2 q-mt-md">Product 2</div>
-              <div class="text-subtitle2  q-mb-xs">$19.99</div>
+              <div class="text-subtitle2 q-mt-md">Platform Series AN810-XNX</div>
+              <div class="text-subtitle2  q-mb-xs">$599</div>
             </q-card-section>
           </q-card-section>
           <q-separator/>
-          <q-card-section horizontal class="q-pa-none">
+          <!--<q-separator/>
+           <q-card-section horizontal class="q-pa-none">
             <q-card-section class="col-5 flex flex-center">
               <q-img height="80px"
                      class="rounded-borders"
@@ -279,11 +283,11 @@
             </q-card-section>
           </q-card-section>
 
-          <q-separator></q-separator>
+          <q-separator></q-separator> -->
           <q-card-section class="row">
             <div class="  col-12 text-h6 full-width">
               <div class="float-right q-mr-md">
-                Total : <span class="text-blue">$288.96</span></div>
+                Total : <span class="text-blue">$1198.00</span></div>
             </div>
           </q-card-section>
 
@@ -300,11 +304,12 @@ import {ref} from 'vue';
 
 export default defineComponent({
   name: "Checkout",
+  
   setup() {
     return {
       step: ref(1),
-      address_detail: ref({}),
-      card_detail: ref({})
+      address_detail: ref({card_number: "xxxx-xxxx-xxxx-1234", expiry_date: "04/2012", first_name: "Pratik", last_name: "Patel", address_line_1 : "4841 Johnston Locks" }),
+      card_detail: ref({name: "Pratik Patel"})
     }
   }
 })

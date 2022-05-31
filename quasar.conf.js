@@ -8,6 +8,8 @@
 
 const { configure } = require('quasar/wrappers');
 
+const path = require('path')
+
 module.exports = configure(function (/* ctx */) {
   return {
     // https://quasar.dev/quasar-cli/supporting-ts
@@ -43,6 +45,7 @@ module.exports = configure(function (/* ctx */) {
       'material-icons', // optional, you are not bound to it
     ],
 
+
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: 'history', // available values: 'hash', 'history'
@@ -65,13 +68,28 @@ module.exports = configure(function (/* ctx */) {
 
       // https://quasar.dev/quasar-cli/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpack (/* chain */) {
-        //
-      },
+      chainWebpack: chain => {
+    chain.module
+      .rule('i18n-resource')
+        .test(/\.(json5?|ya?ml)$/)
+          .include.add(path.resolve(__dirname, './src/i18n'))
+          .end()
+        .type('javascript/auto')
+        .use('i18n-resource')
+          .loader('@intlify/vue-i18n-loader')
+    chain.module
+      .rule('i18n')
+        .resourceQuery(/blockType=i18n/)
+        .type('javascript/auto')
+        .use('i18n')
+          .loader('@intlify/vue-i18n-loader')
+  }
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
+      // https: true,
+      // port: 443,
       https: false,
       port: 8080,
       open: true // opens browser window automatically
@@ -93,7 +111,8 @@ module.exports = configure(function (/* ctx */) {
 
       // Quasar plugins
       plugins: [
-        'AppFullscreen'
+        'AppFullscreen',
+        'Notify'
       ]
     },
 

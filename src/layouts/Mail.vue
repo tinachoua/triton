@@ -171,7 +171,7 @@ export default defineComponent({
     // $q.screen.setSizes({ sm: 300, md: 500, lg: 1000, xl: 2000 })
 
     const leftDrawerOpen = ref(false)
-    const miniState = ref(false)
+    const miniState = ref(true)
 
     return {
       leftDrawerOpen,
